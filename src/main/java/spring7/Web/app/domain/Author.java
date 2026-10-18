@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.ManyToMany;
 
 
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -53,4 +54,27 @@ public class Author {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", books=" + books +
+                '}';
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof Author author)) return false;
+
+        return Objects.equals(getId(), author.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
 }
+
